@@ -1,4 +1,7 @@
+
 class User < ActiveRecord::Base
+	has_many :contacts, dependant: :destroy
+
 
 	before_save {self.email = email.downcase}
 	before_create :create_remember_token
@@ -19,3 +22,4 @@ class User < ActiveRecord::Base
 		self.remember_token = User.digest(User.new_remember_token)
 	end
 end
+
