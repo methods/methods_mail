@@ -1,6 +1,6 @@
 
 class User < ActiveRecord::Base
-	has_many :contacts, dependant: :destroy
+	has_many :contacts, dependent: :destroy
 
 
 	before_save {self.email = email.downcase}

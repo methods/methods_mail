@@ -7,4 +7,5 @@
 <br>
 <h3>Contacts</h3>
 
-<%=
+<%= link_to 'New contact', new_user_contact_path(@user) %>
+<%= link_to 'Log out', session_path, method: "delete" %>
