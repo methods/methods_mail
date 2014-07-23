@@ -6,7 +6,10 @@ class ContactsController < ApplicationController
 
 	def create
 		@user = User.find(params[:user_id])
-		@contact = Contact.new(contact_params)
+		@contact = @user.contacts.create(contact_params)
+		if @contact.group.nil?
+			@contact.group = "default"
+		end
 		if @contact.save
 			redirect_to user_path(@user)
 		else
