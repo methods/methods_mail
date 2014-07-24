@@ -1,8 +1,8 @@
 <title>Show contact</title>
-<h1>Show contacts</h1>
+<h1>Show group contacts</h1>
 
 <% @user.contacts.each do |contact| %>
-	<% if contact.group_name == 'test' %>
+	<% if contact.group_name == 'default' %>
 	<%= contact.name %>
 	<%= contact.email %>
 	<% end %>
