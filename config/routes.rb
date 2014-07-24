@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :contacts
   end
   resources :sessions
+  resources :groups
   match '/login',    to: 'sessions#new',         via: 'get'
   match '/',         to: 'sessions#index',       via: 'get'
   match '/signout',  to: 'sessions#destroy',     via: 'delete'
