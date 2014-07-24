@@ -2,13 +2,15 @@ Rails.application.routes.draw do
   resources :users do
     resources :contacts
   end
-  resources :sessions  
+  resources :sessions
+  match '/login',    to: 'sessions#new',         via: 'get'
+  match '/',         to: 'sessions#index',       via: 'get'
   match '/signout',  to: 'sessions#destroy',     via: 'delete'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'users#new'
+  root 'sessions#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
