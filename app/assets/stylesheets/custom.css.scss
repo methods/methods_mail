@@ -16,26 +16,64 @@ textarea {resize: vertical;}
 
 /* navbar */
 
-.navbar-inverse { background-color: #4798B2}
-.navbar-inverse .navbar-nav>.active>a:hover,.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus { background-color: #A4CCD9}
-.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.open>a,.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover,.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus { background-color: #357285}
-.dropdown-menu { background-color: #A4CCD9}
-.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { background-color: #428BCA}
-.navbar-inverse { background-image: none; }
-.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { background-image: none; }
-.navbar-inverse { border-color: #4798B2}
-.navbar-inverse .navbar-brand { color: #FFFFFF}
-.navbar-inverse .navbar-brand:hover { color: #000000}
-.navbar-inverse .navbar-nav>li>a { color: #FFFFFF}
-.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus { color: #000000}
-.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus { color: #FFFFFF}
-.navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus { color: #FFFFFF}
-.dropdown-menu>li>a { color: #FFFFFF}
-.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { color: #000000}
-.navbar-inverse .navbar-nav>.dropdown>a .caret { border-top-color: #999999}
-.navbar-inverse .navbar-nav>.dropdown>a:hover .caret { border-top-color: #FFFFFF}
-.navbar-inverse .navbar-nav>.dropdown>a .caret { border-bottom-color: #999999}
-.navbar-inverse .navbar-nav>.dropdown>a:hover .caret { border-bottom-color: #FFFFFF}
+
+  /* set the background-color */
+  .navbar-inner
+  {
+    background-color: #4798B2;
+    /* remove the gradient */
+    background-image: none;
+    /* set font color to white */
+    color: white;
+    font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    font-size: 1em;
+  } 
+
+  /* menu items */
+
+    /* set the background of the menu items and default color to white */
+
+      .navbar .nav > li > a {
+        background-color: #4798B2; 
+        color: white;
+        font-size: 1em;
+
+      }
+
+
+    /* set hover and focus colour */
+    .navbar .nav > li > a:focus,
+    .navbar .nav > li > a:hover {
+      background-color: #A4CCD9;
+      color: black;
+    }
+      /* set active item colour */
+      .navbar .nav > .active > a,
+      .navbar .nav > .active > a:hover,
+      .navbar .nav > .active > a:focus {
+
+        background-color: #357285;
+        color: white;
+      }
+    
+    /* set font color and background of the project name (brand) */
+    
+    .navbar .brand 
+    {
+      background-color: #4798B2;
+      color: white;
+      font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+      float: left;
+      margin-right: 10px;
+      font-size: 1.7em;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      padding-top: 9px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+
 
 
 
@@ -44,9 +82,9 @@ textarea {resize: vertical;}
 #logo {
   float: left;
   margin-right: 10px;
-  font: calibri bold;
+  font: calibri;
   font-size: 1.7em;
-  color: teal;
+  color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -55,6 +93,38 @@ textarea {resize: vertical;}
 }
 
 #logo:hover {
-  color: aqua;
+  color: black;
   text-decoration: none;
+}
+
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #357285;
+}
+
+footer a {
+  color: #357285;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 10px;
 }

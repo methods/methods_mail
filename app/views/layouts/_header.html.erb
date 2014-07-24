@@ -1,32 +1,34 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <center><%= link_to "Methods Mail", root_path, id: "logo" %></center>
+<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        
 
-      <nav>
-        <ul class="nav pull-right">
-          <% if signed_in? %>
-            <li><%= link_to "Home", current_user %></li>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Profile", current_user %></li>
-                <li><%= link_to "Settings", '#' %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "Sign out", signout_path, method: "delete" %>
-                </li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to "Users", '#', style: 'color:#4798B2' %></li>
-            <li style="color:teal"><%= link_to "Login in", login_path, style: 'color:#4798B2' %></li>
-            <li><%= link_to "Register", new_user_path, style: 'color:#4798B2' %></li>
-          <% end %>
-        </ul>
-      </nav>
+          <div class="nav-collapse collapse">
+            <% if signed_in? %>
+              <a href="#" class="brand">Methods Mail</a>
+            <% else %>
+            <ul class="nav">
+              <li class="brand"><%= link_to "Methods Mail", root_path %></li>
+            </ul>
+            <% end %>
+            <ul class="nav pull-right">
+            <% if signed_in? %>
+              <li><%= link_to "Home", current_user %></li>
+              <li><%= link_to "New Contact", '#' %></li>
+              <li><%= link_to "New Group", '#' %></li>
+              <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+            <% else %>
+              <li><%= link_to "Users", '#' %></li>
+              <li><%= link_to "Log in", login_path %></li>
+              <li><%= link_to "Register", new_user_path %></li>
+            <% end %>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
     </div>
-  </div>
-</header>
