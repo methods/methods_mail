@@ -9,6 +9,11 @@
 <body>
 
 <%= yield %>
-
+<% if signed_in? %>
+	<%= link_to 'Log out', signout_path, method: :delete %>
+<% end %>
+<% if !signed_in? %>
+	<%= link_to 'Log in', new_session_path %>
+<% end %>
 </body>
 </html>
