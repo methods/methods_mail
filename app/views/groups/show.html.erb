@@ -1,0 +1,17 @@
+<title>Show contact</title>
+<h1>Show contacts</h1>
+
+<% @user.contacts.each do |contact| %>
+	<% if contact.group_name == 'test' %>
+	<%= contact.name %>
+	<%= contact.email %>
+	<% end %>
+<% end %>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<%= link_to 'New contact', new_user_contact_path(@user) %>
+
