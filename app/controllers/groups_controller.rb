@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
 	def new
+		@user = current_user
 	
 	end
 	
@@ -8,6 +9,8 @@ class GroupsController < ApplicationController
 	
 	end
 
-
-
+	def index
+		@user = current_user
+		@group_name = @user.contacts.select('DISTINCT group_name')
+	end
 end
