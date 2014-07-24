@@ -7,8 +7,8 @@ class ContactsController < ApplicationController
 	def create
 		@user = User.find(params[:user_id])
 		@contact = @user.contacts.create(contact_params)
-		if @contact.group.nil?
-			@contact.group = "default"
+		if @contact.group_name.nil?
+			@contact.group_name = "default"
 		end
 		if @contact.save
 			redirect_to user_path(@user)
@@ -19,7 +19,7 @@ class ContactsController < ApplicationController
 
 	private
 		def contact_params
-			params.require(:contact).permit(:name, :email, :group)
+			params.require(:contact).permit(:name, :email, :group_name)
 		end
 
 end

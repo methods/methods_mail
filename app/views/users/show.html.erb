@@ -8,10 +8,10 @@
 <h3>Contacts</h3>
 
 <% @user.contacts.each do |contact|%>
-<%# if contact.group == "default" %>
+<% if contact.group_name == "default" %>
 	<%= contact.name  %>
 	<%= contact.email %>
-	<%# end %>
+	<% end %>
 <% end %>
 <br>
 <br>
