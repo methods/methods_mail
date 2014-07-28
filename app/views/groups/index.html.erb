@@ -1,12 +1,21 @@
-<br><br><br><br>
-<h1>index page!</h1>
+<% provide(:title, 'Sign up') %>
+<% @OutputName = [] %>
+<% @OutputName = @user.name.split(" ") %>
+<h3><%= "#{@OutputName[0]}'s" %> Groups</h3>
 <p>	
 
+<% @row_iterator.each do |row| %>
+	
+	
+	<%= form_tag group_path(@user), method: :get do %>
+			<%= row.group_name %>
+            <%= hidden_field_tag :group_name, row.group_name %>
+            <%= submit_tag 'View', class: "btn btn-small btn-primary" %>
+	<% end %>
+<% end %>
 
-<%= link_to "user", user_path %>
 
 
 <br>
 
 </p>
-Show contacts

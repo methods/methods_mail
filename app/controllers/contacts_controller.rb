@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
 
 	def new
+		@user = current_user
 		@contact = Contact.new
 	end
 

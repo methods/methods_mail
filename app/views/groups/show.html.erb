@@ -2,7 +2,7 @@
 <h1>Show group contacts</h1>
 
 <% @user.contacts.each do |contact| %>
-	<% if contact.group_name == 'default' %>
+	<% if contact.group_name == @viewname %>
 	<%= contact.name %>
 	<%= contact.email %>
 	<% end %>

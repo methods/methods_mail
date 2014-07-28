@@ -6,11 +6,13 @@ class GroupsController < ApplicationController
 	
 	def show
 		@user = current_user
+		@viewname = params[:group_name]
 	
 	end
 
 	def index
 		@user = current_user
-		@group_name = @user.contacts.select('DISTINCT group_name')
+		@row_iterator = @user.contacts.select('DISTINCT group_name')
+
 	end
 end
