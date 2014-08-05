@@ -4,7 +4,9 @@
 
 
 <%= link_to "user", user_path %>
-
+<% @row_iterator.each do |row| %>
+<% = row.group_name %>
+<% end %>
 
 <br>
 

@@ -11,6 +11,9 @@ class GroupsController < ApplicationController
 
 	def index
 		@user = current_user
-		@group_name = @user.contacts.select('DISTINCT group_name')
+		@row_iterator = @user.contacts.select('DISTINCT group_name')
 	end
+
+
+
 end
