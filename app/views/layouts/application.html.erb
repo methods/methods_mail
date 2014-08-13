@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html land="en">
   <head>
     <title><%= full_title(yield(:title)) %></title>
+    <link href="/bootstrap-3.2.0/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/bootstrap-3.2.0/docs/examples/grid/grid.css" rel="stylesheet">
     <%= stylesheet_link_tag "application", media: "all",
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -12,12 +14,20 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
-    <div class="container">
-      <div class="center hero-unit", style="color:teal">
-        <%= yield %>
-      <div>
-    </div>
-
+    <% if !signed_in? %>
+      <div class="container">
+        <div class="center hero-unit", style="color:teal">
+          <%= yield %>
+        <div>
+      </div>
+    <% else %>
+      <div class="container">
+        <div class="center">
+          <%= yield %>
+        </div>
+      </div>
+    <% end %>
+    <%= render 'layouts/footer' %>
   </body>
-      <%= render 'layouts/footer' %>
+      
 </html>

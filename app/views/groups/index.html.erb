@@ -1,21 +1,27 @@
-<% provide(:title, 'Sign up') %>
+<% provide(:title, 'View Groups') %>
 <% @OutputName = [] %>
 <% @OutputName = @user.name.split(" ") %>
-<h3><%= "#{@OutputName[0]}'s" %> Groups</h3>
-<p>	
-
-<% @row_iterator.each do |row| %>
-	
-	
-	<%= form_tag group_path(@user), method: :get do %>
-			<%= row.group_name %>
-            <%= hidden_field_tag :group_name, row.group_name %>
-            <%= submit_tag 'View', class: "btn btn-small btn-primary" %>
-	<% end %>
-<% end %>
-
-
-
-<br>
-
-</p>
+<h1><%= "#{@OutputName[0]}'s" %> Groups</h1>
+<div class="center hero-unit">
+	<table align="center">
+		<tr>
+		    <th>Group name</th>
+		    <th> </th>
+		</tr>
+		<% @row_iterator.each do |row| %>
+			<%= form_tag group_path(@user), method: :get do %>
+				<tr>
+					<% if row.group_name == "default" %>
+						<td>All Contacts</td>
+					<% else %>
+						<td><%= row.group_name %></td>
+					<% end %>
+		            <%= hidden_field_tag :group_name, row.group_name %>
+		            <td><%= submit_tag 'View members', class: "btn btn-small btn-primary" %></td>
+		        </tr>
+			<% end %>
+		<% end %>
+	</table>
+		<br>
+	</p>
+</div>

@@ -1,25 +1,36 @@
-<title><%= @user.name %></title>
+
 <% @OutputName = [] %>
 <% @OutputName = @user.name.split(" ") %>
-<h2>Welcome <%= @OutputName[0] %></h2>
+<% provide(:title, "#{@OutputName[0]}") %>
+<title><%= @user.name %></title>
+<h1>Welcome <%= @OutputName[0] %></h1>
 <br>
 <br>
 <br>
-<h4>Contacts</h4>
-<% @user.contacts.each do |contact|%>
-	<% if contact.group_name == "default" %>
-			<div class="row">
-        		<div class="col-md-4"><%= contact.name  %></div>
-        		<div class="col-md-8"><%= contact.email %></div>
-      		</div><br>
-	<% end %>
-<% end %>
+<div class="center hero-unit">
+	<h3>Contacts</h3>
+	<br>
+	<table align="center">
+		<col>
+		<col width="25">
+  		<col>
+		<tr>
+		    <th>Contact name</th>
+		    <th></th>
+		    <th>Contact email address</th>
+		</tr>
+		<% @user.contacts.each do |contact|%>
+			<% if contact.group_name == "default" %>
+				<tr>
+			    	<td><%= contact.name  %></td>
+			    	<td></td>
+			    	<td><%= contact.email %></td>
+			  	</tr>
+		    <% end %>
+		<% end %>
+	</table>
 </div>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
 
-<%= link_to 'View groups', groups_path(@user) %>
+<%= link_to 'View groups', groups_path(@user), class: "btn btn-large btn-primary" %>

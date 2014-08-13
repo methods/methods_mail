@@ -4,14 +4,16 @@
 <br>
 <br>
 <br>
-<%= form_for :contact, url: user_contacts_path do |f| %>
+<div class="center hero-unit">
+	<%= form_for :contact, url: user_contacts_path do |f| %>
 
-<%= f.label :name %>
-<%= f.text_field :name %>
-<br>
-<%= f.label :email %>
-<%= f.text_field :email %>
-<br>
-<% f.text_field :group_name, value: "default" %>
-<%= f.submit "Create contact" %>
-<% end %>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+		<br>
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+		<br>
+		<% f.text_field :group_name, value: "default" %>
+		<%= f.submit "Create contact" %>
+	<% end %>
+</div>

@@ -10,6 +10,8 @@ section {overflow: auto;}
 
 textarea {resize: vertical;}
 
+
+
 .center {text-align: center;
   h1{margin-bottom: 10px;}
 }
@@ -74,7 +76,12 @@ textarea {resize: vertical;}
     }
 
 
+.hero-unit
+{
+  background-color: #A4CCD9;
+  height: 100%;
 
+}
 
 
 /* header */
@@ -127,4 +134,9 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 10px;
+}
+
+.image-size {
+  max-width: 40px;
+  
 }

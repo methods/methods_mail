@@ -1,17 +1,41 @@
+<% provide(:title, "#{@viewname} Members") %>
 <title>Show contact</title>
-<h1>Show group contacts</h1>
-
-<% @user.contacts.each do |contact| %>
-	<% if contact.group_name == @viewname %>
-	<%= contact.name %>
-	<%= contact.email %>
-	<% end %>
+<% if @viewname == "default" %>
+	<h1>Showing All Contacts</h1>
+<% else %>
+	<h1>Members of <%= @viewname %> Group</h1>
 <% end %>
+
+<div class="center hero-unit">
+
+	<table align="center">
+		<col>
+		<col width="25">
+  		<col>
+		<tr>
+		    <th>Contact name</th>
+		    <th></th>
+		    <th>Contact email address</th>
+		</tr>
+		<% @user.contacts.each do |contact| %>
+			<% if contact.group_name == @viewname %>
+				<tr>
+			    	<td><%= contact.name %></td>
+			    	<td></td>
+			    	<td><%= contact.email %></td>
+			  	</tr>
+		    <% end %>
+		<% end %>
+	</table>
+</div>
+
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<%= link_to 'New contact', new_user_contact_path(@user) %>
+<% if @viewname == "default" %>
+	<%= link_to "New Contact", new_user_contact_path(@user), class: "btn btn-large btn-primary" %>
+<% else %>
+	<%= link_to 'New contact', new_group_path(@user), class: "btn btn-large btn-primary" %>
+<% end %>
+
 
