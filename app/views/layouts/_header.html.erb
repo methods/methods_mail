@@ -23,7 +23,7 @@
               <li><%= link_to "New Group Contact", new_group_path(@user) %></li>
               <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
             <% else %>
-              <li><%= link_to "Users", '#' %></li>
+              <!-- /.add in ability to add yourself to a mailing list  -->
               <li><%= link_to "Log in", login_path %></li>
               <li><%= link_to "Register", new_user_path %></li>
             <% end %>

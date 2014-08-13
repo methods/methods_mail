@@ -4,7 +4,7 @@
 
 html{overflow-y: scroll;}
 
-body {padding-top: 60px;}
+body {padding-top: 80px; padding-bottom: 30px;}
 
 section {overflow: auto;}
 
@@ -134,9 +134,4 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 10px;
-}
-
-.image-size {
-  max-width: 40px;
-  
 }
