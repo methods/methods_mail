@@ -1,0 +1,18 @@
+<% provide(:title, 'Delete Account') %>
+<h1>Delete Account?</h1>
+<br>
+<br>
+<br>
+<% flash.each do |key, value| %>
+	<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+<br>
+<div class="center hero-unit">
+	<h4>Please enter your password and confirm you wish to delete your account:</h4>
+	<%= form_for :user, url: delete_confirmed_path(id: @user.id) do |f| %>
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+		<br>
+		<%= f.submit "Delete Account", class: "btn btn-small btn-primary" %>
+	<% end %>
+</div>

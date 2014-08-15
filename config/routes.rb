@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   match '/login',    to: 'sessions#new',         via: 'get'
   match '/',         to: 'sessions#index',       via: 'get'
   match '/signout',  to: 'sessions#destroy',     via: 'delete'
+  match '/delete_account', to: 'users#delete_account', via: 'get'
+  match '/delete_confirmed', to: 'users#delete_confirmed', via: 'post'
+  match '/delete_group',  to: 'contacts#delete_group',  via: 'get'
+  match '/remove_group_member', to: 'contacts#remove_group_member', via: 'get'
+  match '/change_password', to: 'users#change_password_form', via: 'get'
+  match '/change_password_confirm', to: 'users#change_password', via: 'patch'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

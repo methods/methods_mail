@@ -1,0 +1,10 @@
+<%= form_for :contact, url: user_contacts_path do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<br>
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+	<br>
+	<% f.text_field :group_name, value: "default" %>
+	<%= f.submit "Create contact", class: "btn btn-small btn-primary" %>
+<% end %>
