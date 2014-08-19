@@ -7,7 +7,7 @@
 <% else %>
 	<h1>Members of <%= @viewname %> Group</h1>
 <% end %>
-
+<% @email_list = [] %>
 <div class="center hero-unit">
 
 	<table align="center">
@@ -28,9 +28,12 @@
 			    	<td><%= link_to 'Remove from group', remove_group_member_path(user_id: @user.id, id: contact.id), data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-primary" %></td>
 			  	</tr>
 				<% @group_locator = contact.id %>
+				<% @email_list.push(contact.email) %>
 		    <% end %>
 		<% end %>
 	</table>
+	<br>
+	<br>
 </div>
 
 
@@ -52,7 +55,7 @@
 			</td>
 			<td></td>
 			<td>
-				<%= link_to 'Send E-mail', '#', class: "btn btn-med btn-primary" %>
+				<a href="mailto:<% @email_list.each do |address| %><%= address %>;%20<% end %>?Subject=<%= @viewname %>%20-%20" target="_top" class="btn btn-primary">Send E-Mail <i class="icon-white icon-envelope"></i></a>
 			</td>
 		</tr>
 	<% else %>
@@ -62,7 +65,7 @@
 	    	<td><%= link_to 'New contact', new_group_path(@user, group_name: @viewname), class: "btn btn-med btn-primary" %></td>
 	    	<td></td>
 	    	<td>
-			    <button class="btn btn-med btn-primary" href="mailto:http://someone@example.com?Subject=Hello%20again" target="_top" type="button">Send E-Mail</button>
+				<a href="mailto:<% @email_list.each do |address| %><%= address %>;%20<% end %>?Subject=<%= @viewname %>%20-%20" target="_top" class="btn btn-primary">Send E-Mail <i class="icon-white icon-envelope"></i></a>
 			</td>
 	    	<td></td>
 	    	<td><%= link_to 'Delete group', delete_group_path(user_id: @user.id, id: @group_locator), class: "btn btn-med btn-primary" %></td>
