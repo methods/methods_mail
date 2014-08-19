@@ -3,16 +3,39 @@
 <% @OutputName = @user.name.split(" ") %>
 <h1><%= "#{@OutputName[0]}'s" %> Groups</h1>
 <div class="center hero-unit">
-	<% @row_iterator.each do |row| %>
-		<%= form_tag group_path(@user), method: :get do %>
-         	<% if row.group_name == "default" %>
-				All Contacts
-			<% else %>
-				<%= row.group_name %>
-			<% end %>
-			<%= hidden_field_tag :group_name, row.group_name %>
-            <%= submit_tag 'View members', class: "btn btn-small btn-primary" %>
+	<table align="center">
+		<col>
+		<col width="25">
+		<col>
+		<col width="25">
+		<col>
+		<col width="25">
+		<col>
+		<tr>
+			<th>Group name</th>	
+		</tr>
+		<% @row_iterator.each do |row| %>
+	     	<tr>
+	     		<td>
+			     	<% if row.group_name == "default" %>
+						All Contacts
+					<% else %>
+						<%= row.group_name %>
+					<% end %>
+		        </td>
+		        <td></td>
+		        <td>
+		        	<%= link_to 'View members', group_path(id: @user.id, group_name: row.group_name), class: "btn btn-small btn-primary" %>
+		        </td>
+		       <% if row.group_name != "default" %>
+			        <td></td>
+			        <td>
+			        	<%= link_to 'Delete group', delete_group_path(user_id: @user.id, id: @group_locator), class: "btn btn-small btn-primary" %>
+			        </td>
+				<% end %>
+			</tr>
 		<% end %>
-	<% end %>
+	</table>
 	<br>
 </div>
+<%= link_to 'Create new Group', add_group_path(@user), class: "btn btn-med btn-primary" %>

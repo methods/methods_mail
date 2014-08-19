@@ -1,0 +1,41 @@
+<% provide(:title, "Add group members") %>
+<h1>Add members to <%= @groupname %></h1>
+<br>
+<br>
+<div class="center hero-unit">	
+	<% if @non_member_list %>
+		<table align="center">
+		<col>
+		<col width="25">
+  		<col>
+		<tr>
+		    <th>Contact name</th>
+		    <th></th>
+		    <th>Contact email address</th>
+		</tr>
+			<% @non_member_list.each do |contact| %>
+				<tr>
+			    	<td><%= contact.name %></td>
+			    	<td></td>
+			    	<td><%= contact.email %></td>
+			    	<td><%= link_to 'Add to group', add_member_process_path(id: contact.id, group_name: @groupname), class: "btn btn-small btn-primary" %></td>
+			  	</tr>
+			<% end %>
+		</table>
+	<% else %>
+		<h3>No contacts to add to this group</h3>
+	<% end %>	
+</div>
+<br>
+<div align="center">
+	<table>
+		<col>
+		<col width="50">
+		<col>
+		<tr>
+			<td><%= link_to 'New contact', new_group_path(@user, group_name: @groupname), class: "btn btn-small btn-primary" %></td>
+			<td></td>
+			<td><%= link_to 'Back to group', group_path(id: @user.id, group_name: @groupname), class: "btn btn-small btn-primary" %></td>
+		</tr>
+	</table>
+</div>

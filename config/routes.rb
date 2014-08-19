@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   match '/remove_group_member', to: 'contacts#remove_group_member', via: 'get'
   match '/change_password', to: 'users#change_password_form', via: 'get'
   match '/change_password_confirm', to: 'users#change_password', via: 'patch'
+  match '/add_group_member', to: 'contacts#add_group_member_list_show', via: 'get'
+  match '/add_member_process', to: 'contacts#add_group_member', via: 'get'
+  match '/add_group', to: 'groups#add_group', via: 'get'
+  match '/add_new_group_member', to: 'contacts#add_new_group_contact', via: 'post'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

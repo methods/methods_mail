@@ -1,23 +1,33 @@
 <% provide(:title, 'New Group Contact') %>
 <title>New group</title>
-<h1>Create new group contact</h1>
-
+<h1>Create New Contact For <%= "#{@groupname}" %> Group </h1>
 <br>
 <br>
 <br>
 <div class="center hero-unit">
-	<%= form_for :contact, url: user_contacts_path(@user) do |f| %>
+	<%= form_for :contact, url: add_new_group_member_path(@user) do |f| %>
 
 		<%= f.label :name %>
 		<%= f.text_field :name %>
 		<br>
 		<%= f.label :email %>
 		<%= f.text_field :email %>
-		<br>
-		<%= f.label :group %>
-		<%= f.text_field :group_name%>
+		
+		<%= f.hidden_field :group_name, value: @groupname %>
 
 		<br>
 		<%= f.submit "Create contact", class: "btn btn-small btn-primary" %>
 	<% end %>
+</div>
+<div align="center">
+	<table>
+		<col>
+		<col width="50">
+		<col>
+		<tr>
+			<td><%= link_to 'Add contact to group', add_group_member_path(@user, group_name: @groupname), class: "btn btn-small btn-primary" %></td>
+			<td></td>
+			<td><%= link_to 'Back to group', group_path(id: @user.id, group_name: @groupname), class: "btn btn-small btn-primary" %></td>
+		</tr>
+	</table>
 </div>

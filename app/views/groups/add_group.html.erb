@@ -1,0 +1,18 @@
+<% provide(:title, "Create A New Group") %>
+<h1>Create A New Group</h1>
+<br>
+<br>
+<br>
+<div class="center hero-unit">
+	Enter New Group Name
+	<br>
+	<br>
+	<%= form_tag add_group_member_path(@user), method: :get do %>
+		<%= text_field_tag :group_name %>
+		<br>
+		<br>
+		<%= submit_tag 'Create group', class: "btn btn-small btn-primary" %>
+	<% end %>
+	<br>
+	(You will need to add at least one contact to the group in order to save the group)
+</div>

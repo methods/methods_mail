@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
 	def new
 		@user = current_user
-	
+		@groupname = params[:group_name]
 	end
 	
 	def show
@@ -15,6 +15,9 @@ class GroupsController < ApplicationController
 		@row_iterator = @user.contacts.select('DISTINCT group_name')
 	end
 
+	def add_group
+		@user = current_user
+	end
 
 
 end

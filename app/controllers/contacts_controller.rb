@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-
+  include ContactsHelper
 	def new
 		@user = current_user
 		@contact = Contact.new
@@ -76,6 +76,39 @@ class ContactsController < ApplicationController
 		@group_locator = @contact.group_name
 		@contact.destroy
 		redirect_to group_path(@user, group_name: @group_locator)
+	end
+
+	def add_group_member_list_show
+		@user = current_user
+		@contacts = @user.contacts.all
+		@groupname = params[:group_name]
+		@non_member_list = generate_non_group_member_list(@contacts, @groupname)
+	end
+
+	def add_group_member
+		@user = current_user
+		@contact = Contact.find(params[:id])
+		@group_contact = Contact.new(name: @contact.name, email: @contact.email)
+		@group_contact.group_name = params[:group_name]
+		@group_contact.user_id = @user.id
+		if @group_contact.save
+			flash.now[:success] = "Contact added to group"
+		else
+			flash.now[:error] = "Failed to add contact to group"
+		end
+		redirect_to add_group_member_path(group_name: @group_contact.group_name)
+	end
+
+	def add_new_group_contact
+		@user = current_user
+		@group_contact = @user.contacts.create(contact_params)
+		@non_group_contact = @user.contacts.create(contact_params)
+		@non_group_contact.group_name = "default"
+		if @group_contact.save && @non_group_contact.save
+			redirect_to user_path(@user)
+		else
+			render 'groups#new'
+		end
 	end
 
 	private

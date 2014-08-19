@@ -37,22 +37,37 @@
 <br>
 <br>
 <br>
-<% if @viewname == "default" %>
-	<%= link_to "New Contact", new_user_contact_path(@user), class: "btn btn-med btn-primary" %>
-<% else %>
-	<table align="center">
-		<col>
-		<col width="25">
-  		<col>
-  		<col width="25">
-  		<col>
+<table align="center">
+	<col>
+	<col width="25">
+	<col>
+	<col width="25">
+	<col>
+	<col width="25">
+	<col>
+	<% if @viewname == "default" %>
 		<tr>
-	    	<td><%= link_to 'Add member to group', '#', class: "btn btn-med btn-primary" %></td>
+			<td>
+				<%= link_to "New Contact", new_user_contact_path(@user), class: "btn btn-med btn-primary" %>
+			</td>
+			<td></td>
+			<td>
+				<%= link_to 'Send E-mail', '#', class: "btn btn-med btn-primary" %>
+			</td>
+		</tr>
+	<% else %>
+		<tr>
+	    	<td><%= link_to 'Add contact to group', add_group_member_path(group_name: @viewname), class: "btn btn-med btn-primary" %></td>
 	    	<td></td>
-	    	<td><%= link_to 'New contact', new_group_path(@user), class: "btn btn-med btn-primary" %></td>
+	    	<td><%= link_to 'New contact', new_group_path(@user, group_name: @viewname), class: "btn btn-med btn-primary" %></td>
+	    	<td></td>
+	    	<td>
+			    <button class="btn btn-med btn-primary" href="mailto:http://someone@example.com?Subject=Hello%20again" target="_top" type="button">Send E-Mail</button>
+			</td>
 	    	<td></td>
 	    	<td><%= link_to 'Delete group', delete_group_path(user_id: @user.id, id: @group_locator), class: "btn btn-med btn-primary" %></td>
 	  	</tr>
-	</table>
-<% end %>
+  	<% end %>
+</table>
+
 
