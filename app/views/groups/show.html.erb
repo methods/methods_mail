@@ -1,12 +1,14 @@
 <% provide(:title, "#{@viewname} Members") %>
-<div align="right">
-	<%= link_to "Back to groups", groups_path(@user), class: "btn btn-small btn-primary" %>
-</div>
 <% if @viewname == "default" %>
 	<h1>Showing All Contacts</h1>
 <% else %>
 	<h1>Members of <%= @viewname %> Group</h1>
 <% end %>
+<br>
+<div align="right">
+	<%= link_to "Back to groups", groups_path(@user), class: "btn btn-small btn-primary" %>
+</div>
+<br>
 <% @email_list = [] %>
 <div class="center hero-unit">
 
