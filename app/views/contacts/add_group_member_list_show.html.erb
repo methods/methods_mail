@@ -33,7 +33,7 @@
 		<col width="50">
 		<col>
 		<tr>
-			<td><%= link_to 'New contact', new_group_path(@user, group_name: @groupname), class: "btn btn-small btn-primary" %></td>
+			<td><%= link_to 'New contact', new_group_path(id: @user.id, group_name: @groupname), class: "btn btn-small btn-primary" %></td>
 			<td></td>
 			<td><%= link_to 'Back to group', group_path(id: @user.id, group_name: @groupname), class: "btn btn-small btn-primary" %></td>
 		</tr>

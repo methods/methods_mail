@@ -100,12 +100,16 @@ class ContactsController < ApplicationController
 	end
 
 	def add_new_group_contact
-		@user = current_user
+		@user = User.find(params[:id])
 		@group_contact = @user.contacts.create(contact_params)
 		@non_group_contact = @user.contacts.create(contact_params)
 		@non_group_contact.group_name = "default"
 		if @group_contact.save && @non_group_contact.save
-			redirect_to user_path(@user)
+			if signed_in?
+				redirect_to user_path(@user)
+			else
+				redirect_to Thank_You_path(@user)
+			end
 		else
 			render 'groups#new'
 		end

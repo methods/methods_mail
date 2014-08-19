@@ -78,9 +78,9 @@ class UsersController < ApplicationController
         render 'change_password_form'
       end
       @update_user.destroy
-      render 'change_password_form'
     else
-      flash[:error] = "Incorrect password entered"        
+      flash[:error] = "Incorrect password entered"
+      render 'change_password_form'
     end
     
   end

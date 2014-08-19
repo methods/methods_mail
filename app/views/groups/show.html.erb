@@ -35,8 +35,11 @@
 	<br>
 	<br>
 </div>
-
-
+<% if @viewname != "default" %>
+	<br>
+	<br>
+	URL to direct user to add themselves to this group :- <font color="blue">http://localhost:3000/groups/new?group_name=<%= @url_name %>&id=<%= @user.id %></font>
+<% end %>
 <br>
 <br>
 <br>
@@ -55,17 +58,17 @@
 			</td>
 			<td></td>
 			<td>
-				<a href="mailto:<% @email_list.each do |address| %><%= address %>;%20<% end %>?Subject=<%= @viewname %>%20-%20" target="_top" class="btn btn-primary">Send E-Mail <i class="icon-white icon-envelope"></i></a>
+				<a href="mailto:<% @email_list.each do |address| %><%= address %>;%20<% end %>?Subject=<%= @viewname %>%20-%20" target="_top" class="btn btn-primary">Send E-Mail <span class="glyphicon glyphicon-envelope"></span></a>
 			</td>
 		</tr>
 	<% else %>
 		<tr>
 	    	<td><%= link_to 'Add contact to group', add_group_member_path(group_name: @viewname), class: "btn btn-med btn-primary" %></td>
 	    	<td></td>
-	    	<td><%= link_to 'New contact', new_group_path(@user, group_name: @viewname), class: "btn btn-med btn-primary" %></td>
+	    	<td><%= link_to 'New contact', new_group_path(id: @user.id, group_name: @viewname), class: "btn btn-med btn-primary" %></td>
 	    	<td></td>
 	    	<td>
-				<a href="mailto:<% @email_list.each do |address| %><%= address %>;%20<% end %>?Subject=<%= @viewname %>%20-%20" target="_top" class="btn btn-primary">Send E-Mail <i class="icon-white icon-envelope"></i></a>
+				<a href="mailto:<% @email_list.each do |address| %><%= address %>;%20<% end %>?Subject=<%= @viewname %>%20-%20" target="_top" class="btn btn-primary">Send E-Mail <span class="glyphicon glyphicon-envelope"></span></a>
 			</td>
 	    	<td></td>
 	    	<td><%= link_to 'Delete group', delete_group_path(user_id: @user.id, id: @group_locator), class: "btn btn-med btn-primary" %></td>
