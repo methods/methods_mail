@@ -19,15 +19,17 @@
 		<%= f.submit "Create contact", class: "btn btn-small btn-primary" %>
 	<% end %>
 </div>
-<div align="center">
-	<table>
-		<col>
-		<col width="50">
-		<col>
-		<tr>
-			<td><%= link_to 'Add contact to group', add_group_member_path(@user, group_name: @groupname), class: "btn btn-small btn-primary" %></td>
-			<td></td>
-			<td><%= link_to 'Back to group', group_path(id: @user.id, group_name: @groupname), class: "btn btn-small btn-primary" %></td>
-		</tr>
-	</table>
-</div>
+<% if signed_in? %>
+	<div align="center">
+		<table>
+			<col>
+			<col width="50">
+			<col>
+			<tr>
+				<td><%= link_to 'Add contact to group', add_group_member_path(@user, group_name: @groupname), class: "btn btn-small btn-primary" %></td>
+				<td></td>
+				<td><%= link_to 'Back to group', group_path(id: @user.id, group_name: @groupname), class: "btn btn-small btn-primary" %></td>
+			</tr>
+		</table>
+	</div>
+<% end %>

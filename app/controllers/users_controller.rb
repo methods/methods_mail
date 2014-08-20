@@ -16,73 +16,100 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])
+    if signed_in?
+    	@user = User.find(params[:id])
+    else
+      redirect_to root_url
+    end
   end
 
   def delete_account
-    @user = User.find(params[:id])
+    if signed_in?
+      @user = User.find(params[:id])
+    else
+      redirect_to root_url
+    end
   end
 
   def delete_confirmed
-    @user = User.find(params[:id])
-    if @user && @user.authenticate(params[:user][:password])
-      sign_out
-      @user.destroy
-      flash[:success] = "Account successfully deleted"
-      redirect_to root_url
+    if signed_in?
+      @user = User.find(params[:id])
+      if @user && @user.authenticate(params[:user][:password])
+        sign_out
+        @user.destroy
+        flash[:success] = "Account successfully deleted"
+        redirect_to root_url
+      else
+        flash.now[:error] = "Incorrect password entered"
+        render 'delete_account'
+      end
     else
-      flash.now[:error] = "Incorrect password entered"
-      render 'delete_account'
+      redirect_to root_url
     end
   end
 
   def edit
-    @user = User.find(params[:id])
+    if signed_in?
+      @user = User.find(params[:id])
+    else
+      redirect_to root_url
+    end
   end
 
   def update
-    @user = current_user
-    @new_name = (user_params[:name])
-    @new_email = (user_params[:email])
-    if @user && @user.authenticate(params[:user][:password])
-      if User.find(@user.id).update_attribute(:email, @new_email) && User.find(@user.id).update_attribute(:name, @new_name)
-        redirect_to root_url 
-        flash[:success] = "Account details successfully updated" 
+    if signed_in?
+      @user = current_user
+      @new_name = (user_params[:name])
+      @new_email = (user_params[:email])
+      if @user && @user.authenticate(params[:user][:password])
+        if User.find(@user.id).update_attribute(:email, @new_email) && User.find(@user.id).update_attribute(:name, @new_name)
+          redirect_to root_url 
+          flash[:success] = "Account details successfully updated" 
+        else
+          flash.now[:error] = "Failed to update account details"
+          render 'edit'
+        end
       else
-        flash.now[:error] = "Failed to update account details"
+        flash.now[:error] = "Incorrect password entered"
         render 'edit'
       end
     else
-      flash.now[:error] = "Incorrect password entered"
-      render 'edit'
+      redirect_to root_url
     end
   end
 
   def change_password_form
-    @user = current_user
+    if signed_in?
+      @user = current_user
+    else
+      redirect_to root_url
+    end
   end
 
   def change_password
-    @user = current_user
-    @new_password = (params[:user][:password])
-    @old_password = (user_params[:old_password])
-    @confirm_password = (user_params[:password_confirmation])
-    @update_user = User.new(name: @user.name, email: @user.email, password: @new_password, password_confirmation: @confirm_password)
-    if @user && @user.authenticate(params[:user][:old_password])
-      @update_user.save
-      if @user.update_attribute(:password_digest, @update_user.password_digest)
-        flash[:success] = "Password successfully changed"
-        redirect_to root_url
+    if signed_in?
+      @user = current_user
+      @new_password = (params[:user][:password])
+      @old_password = (user_params[:old_password])
+      @confirm_password = (user_params[:password_confirmation])
+      @update_user = User.new(name: @user.name, email: @user.email, password: @new_password, password_confirmation: @confirm_password)
+      if @user && @user.authenticate(params[:user][:old_password])
+        @update_user.save
+        if @user.update_attribute(:password_digest, @update_user.password_digest)
+          flash[:success] = "Password successfully changed"
+          redirect_to root_url
+        else
+          flash[:error] = "Password change failed"
+          render 'change_password_form'
+        end
+        @update_user.destroy
       else
-        flash[:error] = "Password change failed"
+        flash[:error] = "Incorrect password entered"
         render 'change_password_form'
       end
-      @update_user.destroy
     else
-      flash[:error] = "Incorrect password entered"
-      render 'change_password_form'
+      redirect_to root_url
     end
-    
   end
 
   private
