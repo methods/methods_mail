@@ -16,7 +16,7 @@ class GroupsController < ApplicationController
 	end
 
 	def index
-		if signed_in
+		if signed_in?
 			@user = current_user
 			@row_iterator = @user.contacts.select('DISTINCT group_name')
 		else
