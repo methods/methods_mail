@@ -1,0 +1,17 @@
+hello <%= @email %>
+<br><br>
+Your subscriptions:
+<!-- http://localhost:3000/groups/new?group_name=Kanes+friends&id=1 -->
+ <div class="center hero-unit">
+<% @subscriptions.each do |s| %>
+
+	<%= form_tag("/unsubscribe?email=#{@email}", method: "delete") do %>
+		<%= label_tag(:groupname, "#{s[:group_name]}") %>
+		<%= hidden_field_tag(:group_name,  s[:group_name]) %>
+		<%= submit_tag("Delete subscription") %>
+		
+	<% end %>
+
+<% end %>
+
+</div>

@@ -1,0 +1,7 @@
+<% provide(:title, 'Unsubscribe from a mailing list') %>
+	<%= form_tag("/unsubscribe", method: "post") do %>
+	<%= label_tag(:email, "Enter your Email:") %>
+	<%= text_field_tag(:email) %>
+	<%= submit_tag("Show subscriptions") %>
+
+<% end %>

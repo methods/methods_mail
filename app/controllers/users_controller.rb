@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def new
   	@user = User.new
+
   end
 
   def create
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
   def show
     if signed_in?
     	@user = User.find(params[:id])
+
     else
       redirect_to root_url
     end
