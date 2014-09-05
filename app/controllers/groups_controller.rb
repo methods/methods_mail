@@ -32,6 +32,26 @@ class GroupsController < ApplicationController
 		end
 	end
 
+	def unsubscribe
+
+	end
+
+	def unsubscribe_post
+		@email = params[:email]
+		@subscriptions = Contact.where("email = '#{@email}'")
+
+	end
+
+	def unsubscribe_delete
+		@email = params[:email]
+		@group_name = params[:group_name]
+		@contact = Contact.where("email = '#{@email}' AND group_name = '#{@group_name}'")
+		Contact.find(@contact[0][:id]).destroy
+		redirect_to "unsubscribe" 
+
+
+	end
+
 	def thank_you
 		
 	end

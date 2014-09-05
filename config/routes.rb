@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   match '/add_group', to: 'groups#add_group', via: 'get'
   match '/add_new_group_member', to: 'contacts#add_new_group_contact', via: 'post'
   match '/Thank_You', to: 'groups#thank_you', via: 'get'
+  match '/unsubscribe', to: 'groups#unsubscribe', via: 'get' 
+  match '/unsubscribe', to: 'groups#unsubscribe_post', via: 'post'
+  match '/unsubscribe', to: 'groups#unsubscribe_delete', via: 'delete'  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
