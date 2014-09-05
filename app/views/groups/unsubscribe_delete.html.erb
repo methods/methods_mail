@@ -1,4 +1,12 @@
-delete page
 
-<%= @email %>
-<%= @contact[0][:id] %>
+
+<%= @email %> has been removed from
+<%= @contact[0][:group_name] %>
+
+
+<br><%= form_tag("/unsubscribe?email=#{@email}", method: "post") do %>
+		
+		<%= hidden_field_tag(:email,  @email) %>
+		<%= submit_tag("Back to your subscriptions") %>
+		
+	<% end %>

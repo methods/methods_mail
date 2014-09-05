@@ -47,8 +47,6 @@ class GroupsController < ApplicationController
 		@group_name = params[:group_name]
 		@contact = Contact.where("email = '#{@email}' AND group_name = '#{@group_name}'")
 		Contact.find(@contact[0][:id]).destroy
-		redirect_to "unsubscribe" 
-
 
 	end
 
