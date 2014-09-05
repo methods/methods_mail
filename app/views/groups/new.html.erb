@@ -1,7 +1,11 @@
 <% provide(:title, 'New Group Contact') %>
 <title>New group</title>
-<h1>Create New Contact For <%= "#{@groupname}" %> Group </h1>
-<br>
+<% if signed_in? %>
+	<h1>Create New Contact For <%= "#{@groupname}" %> Group</h1>
+	<br>
+<%else%>
+	<h1>Join The Contact List For <%= "#{@groupname}" %> Group</h1>
+<% end %>
 <br>
 <br>
 <div class="center hero-unit">
@@ -16,7 +20,15 @@
 		<%= f.hidden_field :group_name, value: @groupname %>
 
 		<br>
-		<%= f.submit "Create contact", class: "btn btn-small btn-primary" %>
+		<% if signed_in? %>
+			<%= f.submit "Create contact", class: "btn btn-small btn-primary" %>
+		<% else %>
+			<br>
+			<%= f.check_box :agree, {}, true, false %>
+			<font class="terms_conditions">Tick here if you do not want to be sent other information from this source</font>
+			<br>
+			<%= f.submit "Join group", class: "btn btn-small btn-primary" %>
+		<% end %>
 	<% end %>
 </div>
 <% if signed_in? %>
