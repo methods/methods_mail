@@ -33,12 +33,14 @@ class GroupsController < ApplicationController
 	end
 
 	def unsubscribe
-
+		@user = User.find(params[:id])
 	end
 
 	def unsubscribe_post
+		@user = User.find(params[:id])
 		@email = params[:email]
-		@subscriptions = Contact.where("email = '#{@email}'")
+		@subscriptions = Contact.where("email = '#{@email}' AND user_id = '#{@user.id}'")
+		@name = @subscriptions[0].name
 
 	end
 
@@ -47,7 +49,7 @@ class GroupsController < ApplicationController
 		@group_name = params[:group_name]
 		@contact = Contact.where("email = '#{@email}' AND group_name = '#{@group_name}'")
 		Contact.find(@contact[0][:id]).destroy
-		redirect_to "unsubscribe" 
+		redirect_to "/unsubscribe" 
 
 
 	end

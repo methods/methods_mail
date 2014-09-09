@@ -1,17 +1,24 @@
-hello <%= @email %>
-<br><br>
-Your subscriptions:
+<h3><strong>Hello <%= @name %></strong></h3>
+<br>
+Your current subscriptions with <%= @user.name %>:
 <!-- http://localhost:3000/groups/new?group_name=Kanes+friends&id=1 -->
- <div class="center hero-unit">
-<% @subscriptions.each do |s| %>
-
-	<%= form_tag("/unsubscribe?email=#{@email}", method: "delete") do %>
-		<%= label_tag(:groupname, "#{s[:group_name]}") %>
-		<%= hidden_field_tag(:group_name,  s[:group_name]) %>
-		<%= submit_tag("Delete subscription") %>
-		
+<br>
+<br>
+<table align="center">
+	<col>
+	<col width="25">
+		<col>
+	<% @subscriptions.each do |s| %>
+		<%= form_tag("/unsubscribe?email=#{@email}", method: "delete") do %>
+			<tr>
+				<% if s[:group_name] == "default" %>
+					<td><%= label_tag(:groupname, "General Contacts") %></td>
+				<% else %>
+			    	<td><%= label_tag(:groupname, "#{s[:group_name]}") %></td>
+			    <% end %>
+		    	<td><%= hidden_field_tag(:group_name,  s[:group_name]) %></td>
+		    	<td><%= submit_tag("Delete subscription", class: "btn btn-small btn-primary") %></td>
+		  	</tr>
+	    <% end %>
 	<% end %>
-
-<% end %>
-
-</div>
+</table>

@@ -1,7 +1,11 @@
+<h2>Unsubscribe from mailing lists from <br>
+	<%= @user.name %></h2>
+	<br>
 <% provide(:title, 'Unsubscribe from a mailing list') %>
-	<%= form_tag("/unsubscribe", method: "post") do %>
+	<%= form_tag("/unsubscribe?id=#{@user.id}", method: "post") do %>
 	<%= label_tag(:email, "Enter your Email:") %>
 	<%= text_field_tag(:email) %>
-	<%= submit_tag("Show subscriptions") %>
+	<br>
+	<%= submit_tag("Show subscriptions", class:"btn btn-primary") %>
 
 <% end %>
